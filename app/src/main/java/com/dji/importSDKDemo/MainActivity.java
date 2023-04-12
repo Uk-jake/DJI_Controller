@@ -2,6 +2,7 @@ package com.dji.importSDKDemo;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.SurfaceTexture;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,10 +10,13 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +40,11 @@ public class MainActivity extends AppCompatActivity{
     public static final String FLAG_CONNECTION_CHANGE = "dji_sdk_connection_change";
     private static BaseProduct mProduct;
     private Handler mHandler;
+
+    protected TextureView mVideoSurface = null;
+    private Button mCaptureBtn, mShootPhotoModeBtn, mRecordVideoModeBtn;
+    private ToggleButton mRecordBtn;
+    private TextView recordingTime;
 
     private static final String[] REQUIRED_PERMISSION_LIST = new String[]{
             //권한 설정하기 위해
@@ -66,8 +75,6 @@ public class MainActivity extends AppCompatActivity{
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //SDK를 사용하기 위해 필요한 권한 확인
             checkAndRequestPermissions();
-
-
         }
 
         //activity_main layout 띄움.
@@ -75,6 +82,8 @@ public class MainActivity extends AppCompatActivity{
 
         //Initialize DJI SDK Manager
         mHandler = new Handler(Looper.getMainLooper());
+
+        initUI();
 
     }
 
@@ -258,5 +267,68 @@ public class MainActivity extends AppCompatActivity{
         Log.e(TAG, "onDestroy");
         super.onDestroy();
     }
+
+//    @Override
+//    public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+//    }
+//
+//    @Override
+//    public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+//    }
+//
+//    @Override
+//    public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+//        return false;
+//    }
+//
+//    @Override
+//    public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+//    }
+
+    private void initUI() {
+        // init mVideoSurface
+        mVideoSurface = (TextureView)findViewById(R.id.video_previewer_surface);
+
+        recordingTime = (TextView) findViewById(R.id.timer);
+        mCaptureBtn = (Button) findViewById(R.id.btn_capture);
+        mRecordBtn = (ToggleButton) findViewById(R.id.btn_record);
+        mShootPhotoModeBtn = (Button) findViewById(R.id.btn_shoot_photo_mode);
+        mRecordVideoModeBtn = (Button) findViewById(R.id.btn_record_video_mode);
+
+        if (null != mVideoSurface) {
+            mVideoSurface.setSurfaceTextureListener((TextureView.SurfaceTextureListener) this);
+        }
+
+        mCaptureBtn.setOnClickListener((View.OnClickListener) this);
+        mRecordBtn.setOnClickListener((View.OnClickListener) this);
+        mShootPhotoModeBtn.setOnClickListener((View.OnClickListener) this);
+        mRecordVideoModeBtn.setOnClickListener((View.OnClickListener) this);
+
+        recordingTime.setVisibility(View.INVISIBLE);
+
+        mRecordBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+    }
+
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.btn_capture:{
+//                break;
+//            }
+//            case R.id.btn_shoot_photo_mode:{
+//                break;
+//            }
+//            case R.id.btn_record_video_mode:{
+//                break;
+//            }
+//            default:
+//                break;
+//        }
+//    }
 
 }
