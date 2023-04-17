@@ -143,7 +143,7 @@ public class MainContent extends RelativeLayout {
         mBtnRegisterApp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Test", "Click to Register APP");
+                    Log.d("Test", "Click to Register APP");
                 checkAndRequestPermissions();
             }
         });
@@ -277,7 +277,9 @@ public class MainContent extends RelativeLayout {
                 }
             }
         } else {
-            mBtnOpen.setEnabled(false);
+            //Ignore SDK Register
+            mBtnOpen.setEnabled(true);
+            //mBtnOpen.setEnabled(false);
             mTextProduct.setText(R.string.product_information);
             mTextConnectionStatus.setText(R.string.connection_loose);
             mTextModelAvailable.setText("Firmware version:N/A");
