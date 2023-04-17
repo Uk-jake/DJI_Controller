@@ -50,8 +50,8 @@ public class DemoListView extends FrameLayout {
         builder.addGroup(R.string.component_listview_gimbal,
                 false,
                 new GroupItem(R.string.gimbal_listview_push_info, PushGimbalDataView.class));
-                //new GroupItem(R.string.gimbal_listview_rotate_gimbal, MoveGimbalWithSpeedView.class),
-                //new GroupItem(R.string.gimbal_listview_gimbal_capability, GimbalCapabilityView.class));
+        //new GroupItem(R.string.gimbal_listview_rotate_gimbal, MoveGimbalWithSpeedView.class),
+        //new GroupItem(R.string.gimbal_listview_gimbal_capability, GimbalCapabilityView.class));
 
 
         // Set-up ExpandableListView
@@ -92,8 +92,5 @@ public class DemoListView extends FrameLayout {
             }
         }
     }
-
-
-
 
 }

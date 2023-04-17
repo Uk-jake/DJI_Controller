@@ -1,5 +1,6 @@
 package com.dji.importSDKDemo;
 
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.dji.importSDKDemo.MainActivity.ConnectivityChangeEvent;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -154,6 +156,8 @@ public class MainContent extends RelativeLayout {
                 if (GeneralUtils.isFastDoubleClick()) {
                     return;
                 }
+                String TestLog = String.valueOf(R.string.activity_component_list);
+                Log.d("Test", TestLog);
                 DJISampleApplication.getEventBus().post(componentList);
             }
         });
@@ -248,6 +252,7 @@ public class MainContent extends RelativeLayout {
             });
         }
     }
+
 
     private void refreshSDKRelativeUI() {
         mProduct = DJISampleApplication.getProductInstance();
