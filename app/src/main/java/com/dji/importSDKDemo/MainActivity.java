@@ -21,9 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.view.TextureView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,9 +64,7 @@ public class MainActivity extends AppCompatActivity{
 
     private ObjectAnimator popInAnimator;
     private LayoutTransition popOutTransition;
-
     private Stack<ViewWrapper> stack;
-
 
 
     //region Life-cycle
@@ -88,6 +87,7 @@ public class MainActivity extends AppCompatActivity{
 //        //Initialize DJI SDK Manager
 //        mHandler = new Handler(Looper.getMainLooper());
     }
+
 
     @Override
     protected void onDestroy() {
@@ -257,9 +257,6 @@ public class MainActivity extends AppCompatActivity{
 
     public static class ConnectivityChangeEvent {
     }
-
-
-
 
 
 }
