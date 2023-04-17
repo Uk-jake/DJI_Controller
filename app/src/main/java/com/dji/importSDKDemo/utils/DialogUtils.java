@@ -1,10 +1,12 @@
-package com.dji.sdk.sample.internal.utils;
+package com.dji.importSDKDemo.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import com.dji.sdk.sample.R;
+
+import com.dji.importSDKDemo.R;
+
 import dji.common.error.DJIError;
 
 /**

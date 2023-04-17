@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dji.importSDKDemo">
 
     <!-- Permissions and features -->
@@ -26,25 +27,36 @@
         android:name="android.hardware.usb.accessory"
         android:required="true" />
 
-    <!-- Permissions and features -->
 
+    <!-- SDK requirement permission end -->
     <application
         android:name=".MApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/owl"
+        android:label="@string/sample_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:extractNativeLibs="true"
+        tools:replace="label"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-        <!-- DJI SDK -->
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
         <uses-library android:name="com.android.future.usb.accessory" />
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
+        <!--
+            ADD API_KEY HERE and make sure you
+            are connected to the Internet before
+            the app is launched
+        -->
+        <!-- personal key -->
+
         <meta-data
             android:name="com.dji.sdk.API_KEY"
             android:value="db3aba8b2db441d115477ace" />
 
-        <!-- DJI SDK -->
 
         <activity android:name=".MainActivity"
                   android:configChanges="orientation"

@@ -1,4 +1,4 @@
-package com.dji.sdk.sample.demo.bluetooth;
+package com.dji.importSDKDemo.demo.bluetooth;
 
 import android.app.Service;
 import android.content.Context;
@@ -9,16 +9,18 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.dji.sdk.sample.R;
-import com.dji.sdk.sample.internal.controller.DJISampleApplication;
-import com.dji.sdk.sample.internal.utils.DialogUtils;
-import com.dji.sdk.sample.internal.utils.ToastUtils;
+
+import com.dji.importSDKDemo.DJISampleApplication;
+import com.dji.importSDKDemo.R;
+import com.dji.importSDKDemo.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import dji.common.error.DJIError;
 import dji.common.util.CommonCallbacks;
 import dji.sdk.sdkmanager.BluetoothDevice;
 import dji.sdk.sdkmanager.BluetoothProductConnector;
-import java.util.ArrayList;
-import java.util.List;
 
 public class BluetoothView extends LinearLayout implements View.OnClickListener {
 

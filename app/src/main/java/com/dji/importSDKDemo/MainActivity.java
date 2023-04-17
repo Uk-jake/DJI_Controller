@@ -66,25 +66,7 @@ public class MainActivity extends AppCompatActivity{
 
     private Stack<ViewWrapper> stack;
 
-    private static final String[] REQUIRED_PERMISSION_LIST = new String[]{
-            //권한 설정하기 위해
-            Manifest.permission.BLUETOOTH,
-            Manifest.permission.BLUETOOTH_ADMIN,
-            Manifest.permission.VIBRATE,
-            Manifest.permission.INTERNET,
-            Manifest.permission.ACCESS_WIFI_STATE,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_NETWORK_STATE,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.CHANGE_WIFI_STATE,
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.READ_PHONE_STATE,
-    };
-    private List<String> missingPermission = new ArrayList<>();
-    private AtomicBoolean isRegistrationInProgress = new AtomicBoolean(false);
-    private static final int REQUEST_PERMISSION_CODE = 12345;
+
 
     //region Life-cycle
     @Override
@@ -232,6 +214,20 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
+    private void refreshTitle() {
+        if (stack.size() > 1) {
+            ViewWrapper wrapper = stack.peek();
+            titleTextView.setText(wrapper.getTitleId());
+        } else if (stack.size() == 1) {
+            BaseProduct product = DJISampleApplication.getProductInstance();
+            if (product != null && product.getModel() != null) {
+                titleTextView.setText("" + product.getModel().getDisplayName());
+            } else {
+                titleTextView.setText(R.string.sample_app_name);
+            }
+        }
+    }
+
     private void popView() {
 
         if (stack.size() <= 1) {
@@ -251,35 +247,6 @@ public class MainActivity extends AppCompatActivity{
         popInAnimator.start();
 
         refreshTitle();
-        //refreshOptionsMenu();
-    }
-
-    private void refreshTitle() {
-        if (stack.size() > 1) {
-            ViewWrapper wrapper = stack.peek();
-            titleTextView.setText(wrapper.getTitleId());
-        } else if (stack.size() == 1) {
-            BaseProduct product = DJISampleApplication.getProductInstance();
-            if (product != null && product.getModel() != null) {
-                titleTextView.setText("" + product.getModel().getDisplayName());
-            } else {
-                titleTextView.setText(R.string.sample_app_name);
-            }
-        }
-    }
-
-    private void refreshOptionsMenu() {
-//        if (stack.size() == 2 && stack.peek().getView() instanceof DemoListView) {
-//            searchViewItem.setVisible(true);
-//        } else {
-//            searchViewItem.setVisible(false);
-//            searchViewItem.collapseActionView();
-//        }
-//        if (stack.size() == 3 && stack.peek().getView() instanceof PresentableView) {
-//            hintItem.setVisible(true);
-//        } else {
-//            hintItem.setVisible(false);
-//        }
     }
 
     public static class RequestStartFullScreenEvent {
